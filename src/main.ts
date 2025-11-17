@@ -1,5 +1,5 @@
 // @deno-types="npm:@types/leaflet"
-import _leaflet from "leaflet";
+import leaflet from "leaflet";
 
 // Style sheets
 import "leaflet/dist/leaflet.css"; // supporting style for Leaflet
@@ -10,3 +10,35 @@ import "./_leafletWorkaround.ts"; // fixes for missing Leaflet images
 
 // Import our luck function
 import _luck from "./_luck.ts";
+
+const mapDiv = document.createElement("div");
+mapDiv.id = "map";
+document.body.append(mapDiv);
+
+// Our classroom location
+// Using to compare to example
+const CLASSROOM_LATLNG = leaflet.latLng(
+  36.997936938057016,
+  -122.05703507501151,
+);
+
+const GAMEPLAY_ZOOM_LEVEL = 19;
+const _TILE_DEGREES = 1e-4;
+const _CACHE_SPAWN_PROBABILITY = 0.1;
+
+const map = leaflet.map(mapDiv, {
+  center: CLASSROOM_LATLNG,
+  zoom: GAMEPLAY_ZOOM_LEVEL,
+  minZoom: GAMEPLAY_ZOOM_LEVEL,
+  maxZoom: GAMEPLAY_ZOOM_LEVEL,
+  zoomControl: false,
+  scrollWheelZoom: false,
+});
+
+leaflet
+  .tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19,
+    attribution:
+      '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+  })
+  .addTo(map);
