@@ -1,5 +1,5 @@
 // @deno-types="npm:@types/leaflet"
-import leaflet from "leaflet";
+import _leaflet from "leaflet";
 
 // Style sheets
 import "leaflet/dist/leaflet.css"; // supporting style for Leaflet
@@ -9,4 +9,4 @@ import "./style.css"; // student-controlled page style
 import "./_leafletWorkaround.ts"; // fixes for missing Leaflet images
 
 // Import our luck function
-import luck from "./_luck.ts";
+import _luck from "./_luck.ts";
